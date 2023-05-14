@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <fieldset>
+        <label id="topic"> בחר סוללה לקבלת מידע
+            <br>
+            Lead Acid
+            <input type="radio" name="battery" value="Lead Acid">
+            Li-ion Cobalt
+            <input type="radio" name="battery" value="Li-ion Cobalt">
+            NiMH
+            <input type="radio" name="battery" value="NiMH">
+            NiCd
+            <input type="radio" name="battery" value="NiCd">
+            <div>
+                <button id="Btn">בקש מידע</button>
+            </div>
+            <div id="result">
+
+            </div>
+            <div id="secres"></div>
+        </label>
+
+    </fieldset>
+</body>
+
+<script>
+    document.getElementById("Btn").addEventListener("click", getBatteryInfo)
+    function getBatteryInfo() {
+        var battery = document.querySelector('input[name="battery"]:checked').value;
+        switch (battery) {
+            case "Lead Acid":
+                document.getElementById("result").innerHTML = "Life Cycle: 200-300, Cell Voltage: 2V, Peak Load Current: 5C, Toxicity: Very high"
+                break;
+            case "Li-ion Cobalt":
+                document.getElementById("result").innerHTML = "Life Cycle: 500-1000, Cell Voltage: 3.6V, Peak Load Current: >3C, Toxicity: Low"
+                document.getElementById("secres").innerHTML = '<label id="secodTopic"> בחר גרסה<br>Cobalt <input type="radio" name="version" value="Cobalt" > Manganese <input type="radio" name="version" value="Manganese" > Phosphate <input type="radio" name="version" value="Phosphate"> <div> <button id="secondBtn">בקש מידע</button> </div> <div id="secondResult"></div>'
+                document.getElementById("secondBtn").addEventListener("click", getVersionInfo)
+                function getVersionInfo() {
+                    var version = document.querySelector('input[name="version"]:checked').value;
+                    var show = document.getElementById("secondResult").value
+                    switch (version) {
+                        case "Cobalt":
+                            document.getElementById("secondResult").innerHTML = "Life Cycle: 500-1000, Cell Voltage: 3.6V, Peak Load Current: >3C, Toxicity: Low"
+                            break
+                        case "Manganese":
+                            document.getElementById("secondResult").innerHTML = "Life Cycle: 500-1000, Cell Voltage: 3.8V, Peak Load Current: >30C, Toxicity: Low"
+                            break
+                        case "Phosphate":
+                            document.getElementById("secondResult").innerHTML = "Life Cycle: 1000-2000, Cell Voltage: 3.3V, Peak Load Current: >30C, Toxicity: Low"
+                            break
+                    }
+                }
+            case "NiMH":
+                document.getElementById("result").innerHTML = "Life Cycle: 300-500, Cell Voltage: 1.2V, Peak Load Current: 5C, Toxicity: Low"
+                break;
+            case "NiCd":
+                document.getElementById("result").innerHTML = "Life Cycle: 1000, Cell Voltage: 1.2V, Peak Load Current: 20C, Toxicity: Very high"
+                break;
+        }
+    }
+
+</script>
+
+</html>
